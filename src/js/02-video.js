@@ -7,7 +7,7 @@ const player = new vimeoPlayer(iframe);
 
 const onPlay = function(data) {
 
- player.setCurrentTime(Number(localStorage.getItem("videoplayer-current-time")))
+ player.setCurrentTime(Number(localStorage.getItem("videoplayer-current-time")));
 
 };
 
