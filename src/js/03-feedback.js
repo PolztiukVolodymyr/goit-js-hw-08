@@ -16,7 +16,7 @@ refs.input.addEventListener("input", throttle(onTextareaInput, 500));
 
 refs.form.addEventListener("input", e => {
     formData[e.target.name] = e.target.value;
-    console.log("formData", formData);
+  
   });
 
 function onFormSubmit(event) { 

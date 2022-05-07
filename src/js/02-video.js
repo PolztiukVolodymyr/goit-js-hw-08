@@ -20,7 +20,3 @@ localStorage.setItem("videoplayer-current-time", data.seconds);
 player.on('play', onPlay);
 
 player.on('timeupdate', throttle(onTimeUpdate, 1000));
-
-
-// console.log(iframe);
-// console.log(player);
