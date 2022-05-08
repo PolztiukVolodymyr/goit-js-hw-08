@@ -21,9 +21,11 @@ refs.form.addEventListener("input", e => {
 
 function onFormSubmit(event) { 
    event.preventDefault();
-   event.currentTarget.reset();
-    
- localStorage.removeItem(STOREGE_KEY);
+  
+  if (refs.textarea.value && refs.input.value !== "") {
+    event.currentTarget.reset();
+    localStorage.removeItem(STOREGE_KEY);
+  } else { alert("Please fill all these fields") };
    
 };
 
@@ -41,4 +43,3 @@ function onColonizeTextarea(event) {
         refs.input.value = ParsedSaveMessage.email;
     }
 };
-   

@@ -5,9 +5,12 @@ const iframe = document.querySelector('iframe');
 const player = new vimeoPlayer(iframe);
 
 
-const onPlay = function(data) {
+const onPlay = function (data) {
 
- player.setCurrentTime(Number(localStorage.getItem("videoplayer-current-time")));
+ const savedTime = localStorage.getItem("videoplayer-current-time");
+    if (savedTime) {
+     player.setCurrentTime(Number(savedTime));
+  }
 
 };
 
