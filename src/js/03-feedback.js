@@ -8,38 +8,42 @@ const refs = {
 };
 const formData = {};
 
-onColonizeTextarea();
+
 
 refs.form.addEventListener("submit", onFormSubmit);
-refs.textarea.addEventListener("input", throttle(onTextareaInput, 500));
-refs.input.addEventListener("input", throttle(onTextareaInput, 500));
+refs.form.addEventListener("input", throttle(onFormInput, 500));
 
-refs.form.addEventListener("input", e => {
-    formData[e.target.name] = e.target.value;
-  
-  });
+onInputChenge();
 
+function onFormInput(e) { 
+  formData.email = refs.input.value;
+  formData.message = refs.textarea.value;
+  // formData[e.target.name] = e.target.value;
+  localStorage.setItem(STOREGE_KEY, JSON.stringify(formData)); 
+  //  console.log("formData:", formData)
+}
+ 
 function onFormSubmit(event) { 
-   event.preventDefault();
+  event.preventDefault(); 
   
   if (refs.textarea.value && refs.input.value !== "") {
-    event.currentTarget.reset();
-    localStorage.removeItem(STOREGE_KEY);
+   localStorage.removeItem(STOREGE_KEY);
+   event.currentTarget.reset();
   } else { alert("Please fill all these fields") };
    
 };
 
-function onTextareaInput(event) {
-     
- localStorage.setItem(STOREGE_KEY, JSON.stringify(formData));
- };
-
-function onColonizeTextarea(event) {
-
-    const savedMessage = localStorage.getItem(STOREGE_KEY);
-    const ParsedSaveMessage = JSON.parse(savedMessage)
-      if (savedMessage) {
-        refs.textarea.value = ParsedSaveMessage.message;
-        refs.input.value = ParsedSaveMessage.email;
+function onInputChenge(e) {
+  const savedMessage = localStorage.getItem(STOREGE_KEY);
+  const parsedSaveMessage = JSON.parse(savedMessage)
+  if(savedMessage){
+  if (parsedSaveMessage.email) {
+    refs.input.value = parsedSaveMessage.email;
+  };
+  
+    if (parsedSaveMessage.message) {
+      refs.textarea.value = parsedSaveMessage.message;
     }
+  };
+
 };
